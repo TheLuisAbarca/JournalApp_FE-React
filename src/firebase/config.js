@@ -2,23 +2,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore/lite';
-import 'dotenv/config'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.APIKEY,
-  authDomain: process.env.AUTHDOMAIN,
-  projectId: process.env.PROJECTID,
-  storageBucket: process.env.STORAGEBUCKET,
-  messagingSenderId: process.env.MESSAGINGSENDERID,
-  appId: process.env.APPID
+    apiKey: "AIzaSyC4SUyJeO87O-3WvRVAbvwDRxG8197qz2M",
+    authDomain: "react-reduxtoolkit.firebaseapp.com",
+    projectId: "react-reduxtoolkit",
+    storageBucket: "react-reduxtoolkit.appspot.com",
+    messagingSenderId: "554095870111",
+    appId: "1:554095870111:web:71a60f14a0831cb03f22aa"
 };
 
 // Initialize Firebase
 export const FirebaseApp = initializeApp(firebaseConfig);
-
 export const FirebaseAuth = getAuth(FirebaseApp);
-
 export const CloudFirestore = getFirestore(FirebaseApp);
