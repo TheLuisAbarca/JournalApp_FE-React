@@ -1,4 +1,3 @@
-import { Co2Sharp } from "@mui/icons-material";
 import { collection, getDocs } from "firebase/firestore/lite";
 import { CloudFirestore } from "../firebase/config";
 
