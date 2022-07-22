@@ -1,15 +1,17 @@
-import { SaveOutlined } from '@mui/icons-material'
-import { Button, Grid, TextField, Typography } from '@mui/material'
-import { useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from '../../hooks'
-import { setActiveNote, startSaveNote } from '../../store/journal'
-import { ImageGallery } from '../components'
+import { SaveOutlined } from '@mui/icons-material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
+import { useForm } from '../../hooks';
+import { setActiveNote, startSaveNote } from '../../store/journal';
+import { ImageGallery } from '../components';
 
 export const NoteView = () => {
 
     const dispatch = useDispatch();
-    const { active:note } = useSelector( state => state.journal );
+    const { active:note, messageSaved } = useSelector( state => state.journal );
     const { body, title, date, onInputChange, formState } = useForm( note );
     const dateString = useMemo( () => {
         const newDate = new Date( date );
@@ -18,7 +20,18 @@ export const NoteView = () => {
 
     useEffect(() => {
       dispatch( setActiveNote(formState) );
-    }, [formState])
+    }, [formState]);
+
+    useEffect(() => {
+        if ( messageSaved.length > 0 ) {
+            Swal.fire(
+                'Updated Note!',
+                messageSaved,
+                'success'
+            );
+        }    
+    }, [messageSaved])
+    
     
     const onSaveNote = () => {
         dispatch( startSaveNote() );
