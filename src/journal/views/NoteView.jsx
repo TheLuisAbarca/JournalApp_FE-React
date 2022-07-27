@@ -1,4 +1,4 @@
-import { SaveOutlined, UploadOutlined } from '@mui/icons-material';
+import { Notes, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import { useRef } from 'react';
 import { useEffect, useMemo } from 'react';
@@ -109,7 +109,7 @@ export const NoteView = () => {
             />
         </Grid>
         { /* Image Gallery */}
-        <ImageGallery />
+        <ImageGallery images={ note.imageUrls }/>
     </Grid>
   )
 }
