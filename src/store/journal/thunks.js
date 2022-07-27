@@ -1,7 +1,7 @@
 import { async } from "@firebase/util";
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { CloudFirestore } from '../../firebase/config'
-import { loadNotes } from "../../helpers";
+import { fileUpload, loadNotes } from "../../helpers";
 import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNote } from "./journalSlice";
 
 export const startNewNote = () => {
@@ -49,5 +49,14 @@ export const startSaveNote = () => {
         const docRef = doc( CloudFirestore, `${ uid }/journal/notes/${ note.id }`);
         await setDoc( docRef, noteToFirestore, { merge: true });
         dispatch( updateNote(note) );
+    }
+}
+
+export const startUploadingFiles = ( files = [] ) => {
+    return async( dispatch ) => {
+        dispatch( setSaving() );
+
+        await fileUpload( files[0] );
+        
     }
 }
